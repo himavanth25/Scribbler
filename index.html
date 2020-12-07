@@ -2,92 +2,130 @@
 <html>
 
 <head>
-    <!--Fonts-->
-    <link href="https://fonts.googleapis.com/css?family=Montez&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Ubuntu+Mono&display=swap" rel="stylesheet">
-    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
-    <!--Styles-->
-    <link rel="stylesheet" href="./styles/common.css">
-    <link rel="stylesheet" href="./styles/index.css">
+
+    <title>ScriBBler</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- CSS for header in this file -->
+    <link href='./styles/common.css' rel='stylesheet' type='text/css'>
+
+    <!-- Place all CSS for the rest of the elements in this file -->
+    <link href='./styles/index.css' rel='stylesheet' type='text/css'>
+
+    <!-- google fonts for title -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montez&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono&display=swap" rel="stylesheet">
 </head>
 
 <body>
-    <!--Title and Sign up Sign In buttons-->
-    <header>
-        <div>
-            <a class="website-title">ScriBBler</a>
-            <h4 class="subheading">Explore, Imagine, Create</h4>
+    <div id="main-container-div">
+        <!-- Insert code for Sign Up, Sign In button here. Add code for "ScriBBler" heading and the sub-heading -->
+        <div class="header">
+            <div class="title-container">
+                <p class="title">ScriBBler</p>
+                <p class="sub-title">Explore, Imagine, Create</p>
+            </div>
+            <div class="login-buttons-container">
+                <button onclick="showSignUpModal()" class="blue-button" type="button">Sign Up</button>
+                <button onclick="showSignInModal()" class="blue-button" type="button">Sign In</button>
+
+            </div>
         </div>
-        <div>
-            <button id="header-button-sign-up" class="header-buttons">Sign Up</button>
-            <button id="header-button-sign-in" class="header-buttons">Sign In</button>
+        <div class="page-body">
+            <button onclick="goToPostList()" class="yellow-button" type="button">All Post</button>
+            <button onclick="showCreatePostModal()" class="yellow-button" type="button">Create Post</button>
         </div>
 
-        <!--Sign Up Modal-->
-        <div id="sign-up-modal" class="modal">
+    </div>
+
+    <div>
+        <!--  code for Sign In modal here -->
+        <div id="signin-modal" class="modal">
             <div class="modal-content">
-                <h2 class="modal-header">Get Started <i id="signup-modal-close-button" class="fa fa-times" aria-hidden="true"></i></h2>
+                <div class="modal-head">
+                    <!-- <span class="close">&times;</span> -->
+                    <span onclick="closeSignInModal()" id="close" class="close">&times;</span>
+                    <!-- <i onclick="closeSignInModal()" id="close" class="fa fa-times" aria-hidden="true"></i> -->
+                    <p class="modal-title">Welcome Back!</p>
+                </div>
                 <hr>
                 <form>
-                    <label>Name</label>
-                    <input class="modal-input" name="name" type="text" placeholder="Enter your name" required autofocus />
-                    <label>Username</label>
-                    <input class="modal-input" name="username" type="text" placeholder="Enter your name" required autofocus />
-                    <label>Password</label>
-                    <input class="modal-input" name="username" type="password" placeholder="Enter your password" required autofocus />
-                    <label>Confirm Password</label>
-                    <input class="modal-input" name="username" type="password" placeholder="Re-enter your password" required autofocus />
-                    <button id="modal-button-signup" class="modal-buttons" name="Sign Up">Sign Up</button>
+                    <label for="username" class="label-text">Username</label>
+                    <input type="text" id="username" placeholder="Enter your username" required>
+                    <label for="password" class="label-text">Password</label>
+                    <input type="password" id="password" placeholder="Enter your password" required>
+                    <button type="submit" onclick="signin(username, password)" class="signin-btn">Sign In</button>
                 </form>
+
+                <p class=bottom-banner>Not a member?
+                    <span onclick="closeSignInModal();showSignUpModal()" class=signup>Sign Up
+                    </span>
+                </p>
             </div>
         </div>
 
-        <!--Sign In Modal-->
-        <div id="sign-in-modal" class="modal">
+
+        <!--  code for Sign Up modal here -->
+        <div id="signup-modal" class="modal">
+
+            <!-- Modal content -->
             <div class="modal-content">
-                <h2 class="modal-header">Welcome Back!<i id="signin-modal-close-button" class="fa fa-times" aria-hidden="true"></i></h2>
-                <hr>
-                <form>
-                    <label>Username</label>
-                    <input class="modal-input" name="username" type="text" placeholder="Enter your name" required autofocus />
-                    <label>Password</label>
-                    <input class="modal-input" name="username" type="password" placeholder="Enter your password" required autofocus />
-                    <button id="modal-button-signin" class="modal-buttons" name="Sign In">Sign In</button>
-                    <div class="not-a-member">Not a member?
-                        <pre> </pre><a id="signin-href" href="#sign-up-modal"> Sign Up</a></div>
-                </form>
+                <div class="modal-head">
+                    <span onclick="closeSignUpModal()" id="close" class="close">&times;</span>
+                    <p class="modal-title">Get Started</p>
+                    <hr>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <label for="name" class="label-text">Name</label>
+                        <input type="text" id="username" placeholder="Enter your name" required>
+
+                        <label for="username" class="label-text">Username</label>
+                        <input type="text" id="username" placeholder="Enter your username" required>
+                        <label for="password" class="label-text">Password</label>
+                        <input type="password" id="password" placeholder="Enter your password" required>
+                        <label for="confirm-password" class="label-text">Confirm Password</label>
+                        <input type="password" id="password" placeholder="Re-enter your password" required>
+
+                        <button type="submit" onclick="signup(username, password)" class="signup-btn">Sign Up</button>
+
+                    </form>
+                </div>
             </div>
+
         </div>
 
-    </header>
 
-    <div class="posts">
-        <!-- Two buttons in between screen.-->
-        <button class="posts-buttons" onclick="window.location.href='./html/postslist.html';">All Posts</button>
-        <button id="posts-create-post" class="posts-buttons">Create Post</button>
-
-        <!--Create Post Modal-->
-        <div id="create-post-modal" class="modal">
-            <div class="modal-content modal-create-post">
-                <h2 class="modal-header">Pen Your Post<i id="create-post-modal-close-button" class="fa fa-times" aria-hidden="true"></i></h2>
+        <!--  code for  createPost modal here -->
+        <div class="modal" id="create-post-modal">
+            <div class="modal-content" id="modal-content">
+                <div class="modal-head">
+                    <span onclick="closeCreatePostModal()" id="close" class="close">&times;</span>
+                    <p class="modal-title">Pen Your Post</p>
+                </div>
                 <hr>
-                <form>
-                    <label>Title</label>
-                    <input class="modal-input" name="title" type="text" placeholder="Enter title of your post" required autofocus />
-                    <label>Contents</label>
-                    <textarea class="modal-text-area" placeholder="Enter the contents of your post" required autofocus></textarea>
-                    <button id="create-post-button" class="modal-buttons create-button" name="Create">Create</button>
-                </form>
+                <div class="modal-body">
+                    <form>
+                        <label for="title" class="label-text">Title</label>
+                        <input type="text" id="title" placeholder="Enter title of your post" required>
+                        <label for="contents" class="label-text">Contents</label>
+                        <!-- <input type="text" id="contents" placeholder="Enter the contents of your post" required> -->
+                        <textarea id="contents" rows=10 placeholder="Enter the contents of your post"
+                            required></textarea>
+                        <button type="submit" onclick="create(title, contents)" class="create-btn">Create</button>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
 
-    <!--Scripts-->
-    <script src="./scripts/common.js">
-    </script>
-    <script src="./scripts/index.js">
-    </script>
+
+
+    <!-- Place all Javascript for header in this file -->
+    <script src="./scripts/common.js"></script>
+    <!-- Place all Javascript for rest of the elements in this file -->
+    <script src="./scripts/index.js"></script>
 
 </body>
 
